@@ -56,7 +56,7 @@ const getNoteByIdHandler = (request, h) => {
   }
 
   const response = h.response({
-    status: 'failed',
+    status: 'fail',
     message: 'Catatan tidak ditemukan',
   });
   response.code(404);
@@ -88,7 +88,7 @@ const editNoteByIdHandler = (request, h) => {
   }
 
   const response = h.response({
-    status: 'failed',
+    status: 'fail',
     message: 'Catatan gagal diperbarui',
   });
   response.code(404);
@@ -108,6 +108,13 @@ const deleteNoteByIdHandler = (request, h) => {
     response.code(200);
     return response;
   }
+
+  const response = h.response({
+    status: 'fail',
+    message: 'Catatan gagal dihapus. Id tidak ditemukan',
+  });
+  response.code(404);
+  return response;
 };
 
 module.exports = {
